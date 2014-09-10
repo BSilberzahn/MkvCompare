@@ -11,7 +11,7 @@ namespace MkvCompare
 {
     class Controller
     {
-        private static ArrayList movieList = new ArrayList();
+        private static ArrayList movieList;
 
         public static ArrayList pathToMkvList(string path)
         {
@@ -20,6 +20,7 @@ namespace MkvCompare
 
         private static ArrayList ListDirectory(TreeView treeView, string path)
         {
+            movieList = new ArrayList();
             treeView.Nodes.Clear();
             var rootDirectoryInfo = new DirectoryInfo(path);
             treeView.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
