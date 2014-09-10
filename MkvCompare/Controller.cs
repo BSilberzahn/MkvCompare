@@ -37,8 +37,7 @@ namespace MkvCompare
                 directoryNode.Nodes.Add(new TreeNode(file.Name));
                 if (Path.GetExtension(file.Name) == ".mkv")
                 {
-                    movieList.Add(file.Name);
-                    //Console.WriteLine(file.Name);
+                    movieList.Add(new MkvFile(file.Name, directoryInfo.FullName));
                 }
             }
             return directoryNode;
@@ -47,7 +46,6 @@ namespace MkvCompare
         public static double getFreeSizeDisk(string path)
         {
             string driveLetter = Path.GetPathRoot(path);
-            Console.WriteLine("driveLetter   "+driveLetter);
             double freespace = 0;
             foreach (System.IO.DriveInfo label in System.IO.DriveInfo.GetDrives())
             {
@@ -58,6 +56,15 @@ namespace MkvCompare
                 }
             }
             return freespace;
+        }
+        public static void copy(MkvFile mkvFile, String otherPath)
+        {
+            string[] files = Directory.GetFiles(mkvFile.path, mkvFile.fullName);
+            foreach (string file in files)
+            {
+                string otherFile = Path.Combine(otherPath, mkvFile.fullName);
+                File.Copy(file, otherFile);
+            }
         }
     }
 }
