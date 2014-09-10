@@ -21,10 +21,11 @@ namespace MkvCompare
             InitializeComponent();
 
             String appdir = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase));
-            Console.Write("test: " + appdir + " \n");
-            String myfile = Path.Combine(appdir, "html.html");
-            this.webBrowser1.Url = new Uri("file:///" + @"C:\Users\Benjamin\Documents\Visual Studio 2013\Projects\MkvCompare\MkvCompare\html.html");
-            Console.Write("test2: " + myfile + " \n");
+
+            // Commenter et décommenter une ligne ci-dessous en fonction du poste (temporaire le temps de trouver une solution).
+            //this.webBrowser1.Url = new Uri("file:///" + @"C:\Users\Benjamin\Documents\Visual Studio 2013\Projects\MkvCompare\MkvCompare\index.html");
+            this.webBrowser1.Url = new Uri("file:///" + @"C:\Users\Erwan\Documents\Boulot\C#\MkvCompare\MkvCompare\index.html");
+
 
         }
 
