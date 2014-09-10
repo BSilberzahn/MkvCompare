@@ -43,5 +43,21 @@ namespace MkvCompare
             }
             return directoryNode;
         }
+
+        public static double getFreeSizeDisk(string path)
+        {
+            string driveLetter = Path.GetPathRoot(path);
+            Console.WriteLine("driveLetter   "+driveLetter);
+            double freespace = 0;
+            foreach (System.IO.DriveInfo label in System.IO.DriveInfo.GetDrives())
+            {
+                if (label.Name.Contains(driveLetter))
+                {
+                    freespace = label.TotalFreeSpace / 1024.00 / 1024.00 / 1024.00;
+                    freespace = Math.Round(freespace, 2);
+                }
+            }
+            return freespace;
+        }
     }
 }
