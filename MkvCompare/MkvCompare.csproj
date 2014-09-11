@@ -80,7 +80,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\mkv.css" />
     <Content Include="index.html" />
+    <Content Include="js\jquery-1-11-1.js" />
+    <Content Include="js\jquery-2-1-1.js" />
+    <Content Include="js\mkv.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
