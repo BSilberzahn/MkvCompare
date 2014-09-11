@@ -16,18 +16,36 @@ namespace MkvCompare
 {
     public partial class Form1 : Form
     {
+
+        private string uri = "file:///" + Directory.GetCurrentDirectory().ToString() + @"\..\..\index.html";
+
         public Form1()
         {
             InitializeComponent();
 
             String appdir = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase));
-
+            Console.WriteLine(uri);
             // Commenter et décommenter une ligne ci-dessous en fonction du poste (temporaire le temps de trouver une solution).
-            //this.webBrowser1.Url = new Uri("file:///" + @"C:\Users\Benjamin\Documents\Visual Studio 2013\Projects\MkvCompare\MkvCompare\index.html");
-            this.webBrowser1.Url = new Uri("file:///" + @"C:\Users\Erwan\Documents\Boulot\C#\MkvCompare\MkvCompare\index.html");
-
+            this.webBrowser1.Url = new Uri(uri);
 
         }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            HtmlDocument doc = webBrowser1.Document;
+            HtmlElement head = doc.GetElementsByTagName("head")[0];
+            
+            if (head != null)
+            {
+                HtmlElement s = doc.CreateElement("script");
+                s.SetAttribute("text", System.IO.File.ReadAllText(@"..\..\js\jquery-1-11-1.js"));
+                head.AppendChild(s);
+                s.SetAttribute("text", System.IO.File.ReadAllText(@"..\..\js\mkv.js"));
+                head.AppendChild(s);
+            }
+        }
+
+
 
        
 
