@@ -1,0 +1,71 @@
+*{
+    margin : 0;
+    padding : 0;
+}
+
+body{
+    background : yellow;
+}
+
+
+/***********************/
+/*        Corps        */
+/*********************/
+
+div#corps{
+	margin : 10px 0;
+}
+
+/* Repo1 */
+div#repository1{
+	background : blue;
+	height : 600px;
+	
+}
+
+/* Repo2 */
+div#repository2{
+	background : green;
+	height : 600px;
+}
+
+/* Zone de transfert */
+div#exchangeZone {
+	background : purple;
+	width : 45%;
+	margin-top : 100px;
+	height : 450px;
+	padding : 1%;
+}
+
+
+
+/* ALL */
+div.block {
+	float : left;
+	width : 20%;
+	margin : 0 2%;
+}
+
+div#exchangeZone div.block {
+	background : pink;
+	width : 46%;
+	height : 450px;
+	margin : 0 2%
+}
+
+div.block label {
+	text-align : center;
+	display : block;
+	width : 80%;
+	height : 5%;
+	margin : 5% auto;
+}
+
+div.block ul {
+	background : white;
+	border : 1px solid black;
+	height : 85%;
+	width : 90%;
+	margin : 0 auto;
+}
