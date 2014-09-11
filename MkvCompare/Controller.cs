@@ -58,7 +58,7 @@ namespace MkvCompare
             return freespace;
         }
         public static void copy(MkvFile mkvFile, String otherPath)
-        {
+        {// GESTION DES ERREURS A FAIRE 
             string[] files = Directory.GetFiles(mkvFile.path, mkvFile.fullName);
             foreach (string file in files)
             {
