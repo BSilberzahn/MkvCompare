@@ -23,8 +23,7 @@ namespace MkvCompare
         {
             InitializeComponent();
 
-            String appdir = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase));
-            Console.WriteLine(uri);
+            //String appdir = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase));
             // Commenter et décommenter une ligne ci-dessous en fonction du poste (temporaire le temps de trouver une solution).
             this.webBrowser1.Url = new Uri(uri);
 
