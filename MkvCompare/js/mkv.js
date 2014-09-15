@@ -1,7 +1,18 @@
+/*
 $(document).ready(function() {
-    $('div#repository1').append('<p>Repo1</p>');
-	$('div#repository2').append('<p>Repo2</p>');
-	$('div#movie1To2').append('<p>Zone1</p>');
-	$('div#movie2To1').append('<p>Zone2</p>');
+    $('a.click').click(function(){
+		$('div.repos').toggleClass('highGround lowGround');
+		$('div#exchangeZone').toggleClass('highGround lowGround');
+		alert("Repos : "+$('div.repos').attr('class')+"\nExchange : "+$('div#exchangeZone').attr('class'));
+	});
+    
+})
+*/
+$(window).load(function() {
+    $('.highGround, .lowGround').click(function(){
+		$('div.repos').toggleClass('highGround lowGround');
+		$('div#exchangeZone').toggleClass('highGround lowGround');
+		//alert("Repos : "+$('div.repos').attr('class')+"\nExchange : "+$('div#exchangeZone').attr('class'));
+	});
     
 })

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using System.Reflection;
+using Microsoft.Win32;
 
 
 namespace MkvCompare
@@ -22,11 +23,9 @@ namespace MkvCompare
         public Form1()
         {
             InitializeComponent();
-
-            //String appdir = Path.GetDirectoryName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase));
+           
             // Commenter et décommenter une ligne ci-dessous en fonction du poste (temporaire le temps de trouver une solution).
             this.webBrowser1.Url = new Uri(uri);
-
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -39,6 +38,7 @@ namespace MkvCompare
                 HtmlElement s = doc.CreateElement("script");
                 s.SetAttribute("text", System.IO.File.ReadAllText(@"..\..\js\jquery-1-11-1.js"));
                 head.AppendChild(s);
+                s = doc.CreateElement("script");
                 s.SetAttribute("text", System.IO.File.ReadAllText(@"..\..\js\mkv.js"));
                 head.AppendChild(s);
             }
