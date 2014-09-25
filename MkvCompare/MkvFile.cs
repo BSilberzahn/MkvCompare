@@ -16,7 +16,8 @@ namespace MkvCompare
         public Double size;
         public long width ;
         public long height;
-        public List<string> listLanguages;
+        public List<string> listLanguageSubtitle;
+        public List<string> listLanguageAudio;
 
 
         public MkvFile(String fullName, String path)
@@ -25,7 +26,8 @@ namespace MkvCompare
             this.labelName = Path.GetFileNameWithoutExtension(fullName);
             this.path = path;
             this.size = Math.Round((new FileInfo(path + "/" + fullName).Length) / 1024.00 / 1024.00 / 1024.00,2);
-            listLanguages = new List<string>();
+            listLanguageSubtitle = new List<string>();
+            listLanguageAudio = new List<string>();
             GetMatroskaTags();
         }
 
@@ -36,6 +38,7 @@ namespace MkvCompare
             using (var fs = new FileStream(path + "/" + fullName, FileMode.Open, FileAccess.Read))
             using (EbmlReader ebmlReader = new EbmlReader(fs))
             {
+                Console.WriteLine("--------------" + labelName + "----------------");
                 var segmentFound = ebmlReader.LocateElement(MatroskaElementDescriptorProvider.Segment);
                 if (segmentFound)
                 {
@@ -79,24 +82,26 @@ namespace MkvCompare
                                             }
                                             ebmlReader.LeaveContainer();
                                         }
-                                        if (trackEntryDescriptor.Name == "TrackType")
+                                        else if (trackEntryDescriptor.Name == "TrackType")
                                         {
                                             trackType = ebmlReader.ReadInt();
                                         }
                                         else if (trackEntryDescriptor.Name == "Language")
                                         {
                                             trackLanguage = ebmlReader.ReadUtf();
-                                            Console.WriteLine("->" + trackLanguage + "<-");
 
-                                            //if (trackLanguage.Equals("") || trackLanguage == null)
-                                            //{
-                                            //    trackLanguage = "eng";
-                                            //}
+                                            if (trackType == 0x11) //subtitle
+                                            {
+                                                listLanguageSubtitle.Add(trackLanguage);
+                                                //Console.WriteLine("subtitle : ->" + trackLanguage + "<-");
+                                            }
+                                            else if (trackType == 2) //audio
+                                            {
+                                                listLanguageAudio.Add(trackLanguage);
+                                                //Console.WriteLine("audio : ->" + trackLanguage + "<-");
+                                            }
                                         }
-                                    }
-                                    if (trackType == 0x11) //subtitle
-                                    {
-                                        listLanguages.Add(trackLanguage);
+
                                     }
                                     ebmlReader.LeaveContainer();
                                 }
@@ -117,10 +122,15 @@ namespace MkvCompare
             Console.WriteLine("Size : " + size);
             Console.WriteLine("Width : " + width);
             Console.WriteLine("Height : " + height);
-            Console.WriteLine("Subtitles : " + listLanguages.Count);
-            foreach(string sub in listLanguages)
+            Console.WriteLine("Subtitles : " + listLanguageSubtitle.Count);
+            foreach (string sub in listLanguageSubtitle)
             {
                 Console.WriteLine("\t - " + sub);
+            }
+            Console.WriteLine("Audio : " + listLanguageAudio.Count);
+            foreach (string aud in listLanguageAudio)
+            {
+                Console.WriteLine("\t - " + aud);
             }
         }
     }
