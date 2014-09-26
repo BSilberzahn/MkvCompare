@@ -38,7 +38,7 @@ namespace MkvCompare
             using (var fs = new FileStream(path + "/" + fullName, FileMode.Open, FileAccess.Read))
             using (EbmlReader ebmlReader = new EbmlReader(fs))
             {
-                Console.WriteLine("--------------" + labelName + "----------------");
+                //Console.WriteLine("--------------" + labelName + "----------------");
                 var segmentFound = ebmlReader.LocateElement(MatroskaElementDescriptorProvider.Segment);
                 if (segmentFound)
                 {
@@ -113,6 +113,7 @@ namespace MkvCompare
                 }
             }
         }
+
         public void display()
         {
             Console.WriteLine("------------------------");
