@@ -1,10 +1,26 @@
 $(function () {
-    $("#btntest").click(function () {
+    $("#btntest").click(function (event) {
         showLoader();
     });
 
-    $("div.movie_list>p").click(function () {
-        $(this).toggleClass("opt_select");
+    $("div.movie_list>p>.add").click(function (event) {
+        if ($(this).parent().hasClass("opt_ignore")) {
+            $(this).parent().removeClass("opt_ignore");
+        }
+
+        $(this).parent().toggleClass("opt_select");
+    });
+
+    $("div.movie_list>p>.ignore").click(function (event) {
+        if ($(this).parent().hasClass("opt_select")) {
+            $(this).parent().removeClass("opt_select");
+        }
+
+        $(this).parent().toggleClass("opt_ignore");
+    });
+
+    $("div.movie_list>p>.info").click(function (event) {
+        alert("info");
     });
 
     hideLoader();

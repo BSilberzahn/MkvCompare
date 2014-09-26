@@ -29,6 +29,7 @@ namespace MkvCompare
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.reduce_btn = new System.Windows.Forms.Button();
             this.close_btn = new System.Windows.Forms.Button();
@@ -88,6 +89,7 @@ namespace MkvCompare
             this.Controls.Add(this.close_btn);
             this.Controls.Add(this.toolStripContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MkvCompare";
