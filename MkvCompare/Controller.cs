@@ -12,39 +12,38 @@ namespace MkvCompare
 {
     class Controller
     {
-        private static List<MkvFile> movieList;
-
-        public static List<MkvFile> pathToMkvList(string path)
+        public static MkvList PathToMkvList(string path)
         {
-            return ListDirectory(new TreeView(), path);
+            return new MkvList().pathToMkvList(path);
         }
 
-        private static List<MkvFile> ListDirectory(TreeView treeView, string path)
+        public static void DeleteMkvFileInCommon(MkvList list, MkvList list2)
         {
-            movieList = new List<MkvFile>();
-            treeView.Nodes.Clear();
-            var rootDirectoryInfo = new DirectoryInfo(path);
-            treeView.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
-            return movieList;
-        }
-
-        private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
-        {
-            var directoryNode = new TreeNode(directoryInfo.Name);
-            foreach (var directory in directoryInfo.GetDirectories())
-                directoryNode.Nodes.Add(CreateDirectoryNode(directory));
-            foreach (var file in directoryInfo.GetFiles())
+            //return list.deleteMkvFileInCommon(list2.movieList);
+            List<MkvFile> copyList = new List<MkvFile>();
+            List<MkvFile> copyList2 = new List<MkvFile>();
+            foreach (MkvFile mkv in list.movieList)
             {
-                directoryNode.Nodes.Add(new TreeNode(file.Name));
-                if (Path.GetExtension(file.Name) == ".mkv")
+                foreach (MkvFile mkv2 in list2.movieList)
                 {
-                    movieList.Add(new MkvFile(file.Name, directoryInfo.FullName));
+                    if (mkv.fullName.Equals(mkv2.fullName))
+                    {
+                        copyList.Add(mkv);
+                        copyList2.Add(mkv2);
+                    }
                 }
             }
-            return directoryNode;
+            foreach (MkvFile mkv in copyList)
+            {
+                list.movieList.Remove(mkv);
+            }
+            foreach (MkvFile mkv2 in copyList2)
+            {
+                list2.movieList.Remove(mkv2);
+            }
         }
 
-        public static double getFreeSizeDisk(string path)
+        public static double GetFreeSizeDisk(string path)
         {
             string driveLetter = Path.GetPathRoot(path);
             double freespace = 0;
@@ -58,7 +57,7 @@ namespace MkvCompare
             }
             return freespace;
         }
-        public static void copy(MkvFile mkvFile, String otherPath)
+        public static void Copy(MkvFile mkvFile, String otherPath)
         {// GESTION DES ERREURS A FAIRE 
             string[] files = Directory.GetFiles(mkvFile.path, mkvFile.fullName);
             foreach (string file in files)
@@ -68,7 +67,7 @@ namespace MkvCompare
             }
         }
 
-        private static void getHiddenFiles(String path)
+        private static void GetHiddenFiles(String path)
         {
             if (!System.IO.Directory.Exists(path))
             {

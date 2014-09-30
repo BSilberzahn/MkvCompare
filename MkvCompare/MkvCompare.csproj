@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="MatroskaElementDescriptorProvider.cs" />
     <Compile Include="MkvFile.cs" />
+    <Compile Include="MkvList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
