@@ -1,14 +1,45 @@
 @font-face
 {
-      font-family: "sunshine";
-      src: url("../font/sunshine.ttf");
-    }
+    font-family: "sunshine";
+    src: url("../font/sunshine.ttf");
+}
+
+@font-face
+{
+    font-family: "caviar";
+    src: url("../font/caviar.ttf");
+}
+
+@font-face
+{
+    font-family: "caviar";
+    src: url("../font/caviar_b.ttf");
+    font-weight: bold;
+}
+
+@font-face
+{
+    font-family: "caviar";
+    src: url("../font/caviar_bi.ttf");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face
+{
+    font-family: "caviar";
+    src: url("../font/caviar_i.ttf");
+    font-style: italic;
+}
 
 body
 {
-	background-color: #2D2D30;
+    position: absolute;
+	background-image: url("../img/skulls.png");
     font-family: "sunshine";
 	margin: 0px;
+    height: 100%;
+    width: 100%;
 }
 
 header
@@ -31,7 +62,6 @@ header
 body>section
 {
     position: absolute;
-	background-color: #FAFFE8;
     background-repeat: no-repeat;
     box-sizing: border-box;
     background-size: 120px 120px;
@@ -78,13 +108,17 @@ section#two>.disc_title
 
 div.movie_list
 {
+    background-color: rgba(255,255,255,0.5);
     margin: auto;
     margin-top: 140px;
     width: 400px;
     height: 440px;
     border: 2px black solid;
     text-align: left;
-    font-size: 24px;
+    font-family: "caviar";
+    font-size: 20px;
+    overflow-y: scroll;
+    overflow-x: no-display;
 }
 
 p.opt_select
@@ -113,15 +147,29 @@ div.movie_list>p
     cursor: pointer;
 }
 
-p>.info
+p>.info, p>.info_hover
 {
     display: block;
     position: absolute;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: auto 20px;
     top: 0px;
     right: 0px;
     height: 100%;
     width: 21px;
 }
+
+p>.info
+{
+    background-image: url("../img/info_bw.png");
+}
+
+p>.info_hover
+{
+    background-image: url("../img/info.png");
+}
+
 
 p>.ignore
 {
@@ -162,7 +210,7 @@ div#transfer
 div#loader
 {
     position: fixed;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(155,155,155,0.8);
     background-image: url("../img/loader.gif");
     background-repeat: no-repeat;
     background-position: center;

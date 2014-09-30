@@ -23,6 +23,12 @@ $(function () {
         alert("info");
     });
 
+    $("div.movie_list>p>.info").hover(function (event) {
+        $(this).toggleClass("info_hover");
+    }, function (event) {
+        $(this).toggleClass("info_hover");
+    });
+
     hideLoader();
 });
 
