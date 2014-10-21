@@ -20,7 +20,7 @@ $(function () {
     });
 
     $("div.movie_list>p>.info").click(function (event) {
-        alert("info");
+        cordova.exec(null, null, "MKV", "test", []);
     });
 
     $("div.movie_list>p>.info").hover(function (event) {

@@ -58,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
+    <Compile Include="cordova\plugins\AbstractCordovaPlugin.cs" />
+    <Compile Include="cordova\context\CallBackContext.cs" />
+    <Compile Include="cordova\plugins\ICordovaPlugin.cs" />
+    <Compile Include="cordova\plugins\imp\MkvPluginImpl.cs" />
+    <Compile Include="cordova\ScriptManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +178,7 @@
     <Content Include="res\www\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="res\www\js\cordova.js" />
     <Content Include="res\www\js\jquery-2.1.1.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
